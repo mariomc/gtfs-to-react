@@ -1,0 +1,10 @@
+.DS_Store
+/node_modules
+/packages/*/node_modules
+/packages/native/.expo
+
+*.log
+*.cache
+/.package.json
+package-lock.json
+.idea/

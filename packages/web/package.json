@@ -1,0 +1,25 @@
+{
+  "name": "gtfs-to-react-web",
+  "version": "0.0.1",
+  "description": "GTFS To React - Web Module",
+  "dependencies": {
+    "ant-design": "^1.0.0",
+    "antd": "^3.1.6",
+    "apollo-cache-inmemory": "^1.1.5",
+    "apollo-client": "^2.2.1",
+    "apollo-link": "^1.0.7",
+    "apollo-link-http": "^1.3.2",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.6.1",
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -16,4 +16,6 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({ link, cache });
 
-ReactDOM.render(<ApolloProvider client={client}><App /></ApolloProvider>, document.getElementById('root'));
+ReactDOM.render(<ApolloProvider client={client}>
+    <App />
+</ApolloProvider>, document.getElementById('root'));

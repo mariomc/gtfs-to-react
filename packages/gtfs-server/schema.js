@@ -11,9 +11,21 @@ type Route {
   route_text_color : String
   agency_key : String
 }
+
+type Shape {
+  agency_key : String
+  shape_id : String
+  shape_pt_lat : Float
+  shape_pt_lon : Float
+  loc : [Float]
+  shape_pt_sequence : Float
+  shape_dist_traveled : Float
+}
+
 type RootQuery {
   route(route_id: String): Route
   routes: [Route]
+  shapes(shape_id: String): [Shape]
 }
 schema {
   query: RootQuery

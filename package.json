@@ -1,5 +1,5 @@
 {
-  "name": "gtfs-to-react",
+  "name": "gtfs-react-graphql",
   "version": "0.0.1",
   "description": "Build React and React Native applications timetables from GTFS transit data",
   "main": "index.js",
@@ -699,6 +699,7 @@
     "raw-body": "^2.3.2",
     "rc": "^1.2.5",
     "react": "^16.2.0",
+    "react-apollo": "^2.1.0",
     "react-clone-referenced-element": "^1.0.1",
     "react-deep-force-update": "^1.1.1",
     "react-devtools-core": "^3.0.0",

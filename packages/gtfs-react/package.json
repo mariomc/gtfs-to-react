@@ -1,5 +1,5 @@
 {
-  "name": "gtfs-to-react-web",
+  "name": "gtfs-react",
   "version": "0.0.1",
   "description": "GTFS To React - Web Module",
   "dependencies": {
@@ -12,8 +12,10 @@
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "react": "^16.2.0",
-    "react-apollo": "^2.0.4",
+    "react-apollo": "^2.1.0-rc.5",
     "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0"
   },
   "scripts": {

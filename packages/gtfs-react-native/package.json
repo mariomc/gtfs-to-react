@@ -1,5 +1,5 @@
 {
-  "name": "gtfs-to-react-native",
+  "name": "gtfs-react-native",
   "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {

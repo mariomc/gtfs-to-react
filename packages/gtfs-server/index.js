@@ -11,7 +11,7 @@ const Connectors = require('./connectors');
 const { makeExecutableSchema } = require('graphql-tools');
 
 Mongoose.Promise = global.Promise;
-Mongoose.connect('mongodb://localhost/carris', (err) => {
+Mongoose.connect('mongodb://localhost/gtfs', (err) => {
   console.log("connected");
   if (err) {
     return err;

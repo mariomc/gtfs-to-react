@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import gql from 'graphql-tag'
 import { compose, graphql } from 'react-apollo';
 

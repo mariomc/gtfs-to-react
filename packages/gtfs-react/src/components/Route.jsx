@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Route = ({ route }) => {
-  console.log(route);
-  return null;
+  return <h1>{ route.route_long_name }</h1>;
 }
 
 export default Route;

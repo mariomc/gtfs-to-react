@@ -8,6 +8,10 @@ const resolveFunctions = {
       const routes = new ctx.constructor.Routes();
       return routes.getAllRoutes();
     },
+    stops(_, props, ctx) {
+      const stops = new ctx.constructor.Stops();
+      return stops.findStops(props);
+    },
     shapes(_, props, ctx) {
       const shapes = new ctx.constructor.Shapes();
       return shapes.findShapes(props);

@@ -4,7 +4,7 @@
   "description": "GTFS To React - Server Module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
@@ -21,6 +21,7 @@
     "graphql-tools": "^2.23.1",
     "gtfs": "^1.6.1",
     "mongoose": "^5.0.11",
+    "nodemon": "^1.17.2",
     "react-apollo": "^2.0.4"
   }
 }

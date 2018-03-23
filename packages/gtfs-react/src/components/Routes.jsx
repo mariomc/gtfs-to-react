@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import List from 'antd/lib/list';
 

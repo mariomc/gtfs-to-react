@@ -1,5 +1,6 @@
 const Route = require('gtfs/models/gtfs/route');
 const Shape = require('gtfs/models/gtfs/shape');
+const Stop = require('gtfs/models/gtfs/stop');
 
 class Routes {
   async getAllRoutes(params = {}) {
@@ -12,12 +13,19 @@ class Routes {
   }
 }
 
+class Stops {
+  async findStops(params = {}) {
+    const stops = await Stop.find(params);
+    return stops;
+  }
+}
+
 class Shapes {
   async findShapes(params = {}) {
-    const shapes = await Shape.find(params);
+    const shapes = await Shape.find(params).sort({ 'shape_pt_sequence' : 1 });
     return shapes;
   }
 }
 
 
-module.exports = { Routes, Shapes };
+module.exports = { Routes, Shapes, Stops };

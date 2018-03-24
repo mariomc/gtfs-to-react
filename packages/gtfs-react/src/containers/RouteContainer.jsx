@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { gql } from 'apollo-boost'
+import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 
 import Route from '../components/Route';

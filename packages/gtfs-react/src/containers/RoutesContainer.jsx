@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import { gql } from 'apollo-boost';
 import { compose, graphql } from 'react-apollo';
 
 import Routes from '../components/Routes';

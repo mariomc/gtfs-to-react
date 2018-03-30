@@ -1,31 +1,41 @@
-const Route = require('gtfs/models/gtfs/route');
-const Shape = require('gtfs/models/gtfs/shape');
-const Stop = require('gtfs/models/gtfs/stop');
+import Route from "gtfs/models/gtfs/route";
+import Shape from "gtfs/models/gtfs/shape";
+import Stop from "gtfs/models/gtfs/stop";
 
-class Routes {
+export class Routes {
+  constructor() {
+    this.connector = Route;
+  }
   async getAllRoutes(params = {}) {
-    const routes = await Route.find(params);
+    const routes = await this.connector.find(params);
     return routes;
   }
   async findRoute(params = {}) {
-    const routes = await Route.findOne(params);
+    const routes = await this.connector.findOne(params);
     return routes;
   }
 }
 
-class Stops {
+export class Stops {
+  constructor() {
+    this.connector = Stop;
+  }
   async findStops(params = {}) {
-    const stops = await Stop.find(params);
+    const stops = await this.connector.find(params);
     return stops;
   }
 }
 
-class Shapes {
+export class Shapes {
+  constructor() {
+    this.connector = Shape;
+  }
   async findShapes(params = {}) {
-    const shapes = await Shape.find(params).sort({ 'shape_pt_sequence' : 1 });
+    const shapes = await this.connector
+      .find(params)
+      .sort({ shape_pt_sequence: 1 });
     return shapes;
   }
 }
 
-
-module.exports = { Routes, Shapes, Stops };
+export default { Routes, Shapes, Stops };

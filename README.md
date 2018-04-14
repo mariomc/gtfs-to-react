@@ -29,7 +29,7 @@ lerna bootstrap
 ```
 To run all packages:
 ```
-lerna run start
+lerna run start --parallel
 ```
 
 You can run each package individually by using this command inside the package folder:

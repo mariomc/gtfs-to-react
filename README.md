@@ -4,7 +4,7 @@ Build React and React Native applications timetables from GTFS transit data
 ## What does it include?
 This project follows a multi-repository approach, based on [Lerna](https://github.com/lerna/lerna) and provides the following packages:
 * GTFS to React Server - An Express server that connects to the mongoDB and provides a GrapqhQL endpoint for all the clients.
-* GTFS to React Native - A React Native application for mobile devices. It connects to the GTFS React Server for GrapqhQL data.
+* [Future Release - WIP] GTFS to React Native - A React Native application for mobile devices. It connects to the GTFS React Server for GrapqhQL data.
 * GTFS to React Web - An web application that connects to the GTFS React Server for GrapqhQL data.
 
 ## How to get it running

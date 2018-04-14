@@ -16,7 +16,7 @@ If you wish, you can use the config available in our repository.
 
 Fork this project, then, install mongodb, and with the mongo daemon running, run the following to import the data to the database:
 ```
-git clone this-repository
+git clone git@github.com:mariomc/gtfs-to-react.git
 cd gtfs-to-react
 npm install gtfs mongoose lerna -g
 gtfs-import --configPath import-config.json
@@ -25,7 +25,6 @@ gtfs-import --configPath import-config.json
 This project is a multi-repository and uses [Lerna](https://github.com/lerna/lerna) to handle versioning and publishing.
 At the moment of development, you need to
 ```
-npm install -g lerna
 lerna bootstrap
 ```
 To run all packages:

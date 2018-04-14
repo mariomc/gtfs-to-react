@@ -2,7 +2,7 @@
   "lerna": "2.8.0",
   "packages": [
     "packages/gtfs-react",
-    "packages/gtfs-react-native"
+    "packages/gtfs-server"
   ],
   "version": "0.0.0",
   "npmClient": "yarn"

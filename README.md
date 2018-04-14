@@ -9,18 +9,24 @@ This project follows a multi-repository approach, based on [Lerna](https://githu
 
 ## How to get it running
 
-You need to use [node-gtfs](https://github.com/BlinkTagInc/node-gtfs) to import your GTFS data into a mongodb collection. (At the moment, it's hardcoded to read if from a localhost server with the collection name of 'carris')
+You need to use [node-gtfs](https://github.com/BlinkTagInc/node-gtfs) to import your GTFS data into a mongodb collection. (At the moment, it's hardcoded to read if from a localhost server with the collection name of 'gtfs')
 You can use any GTFS data available worldwide. [TransitFeeds](http://transitfeeds.com/) offer a wide array of choices for public GTFS feeds.
 
-After that, fork this repo and run:
+If you wish, you can use the config available in our repository.
+
+Fork this project, then, install mongodb, and with the mongo daemon running, run the following to import the data to the database:
 ```
-npm install
+git clone this-repository
+cd gtfs-to-react
+npm install gtfs mongoose lerna -g
+gtfs-import --configPath import-config.json
 ```
 
 This project is a multi-repository and uses [Lerna](https://github.com/lerna/lerna) to handle versioning and publishing.
 At the moment of development, you need to
 ```
 npm install -g lerna
+lerna bootstrap
 ```
 To run all packages:
 ```

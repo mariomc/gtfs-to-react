@@ -1,28 +1,48 @@
 import Route from "gtfs/models/gtfs/route";
 import Shape from "gtfs/models/gtfs/shape";
-import Stop from "gtfs/models/gtfs/stop";
+import stop from "gtfs/models/gtfs/stop";
+
+import gtfs from "gtfs";
 
 export class Routes {
   constructor() {
     this.connector = Route;
   }
   async getAllRoutes(params = {}) {
-    const routes = await this.connector.find(params);
+    const routes = await gtfs.getRoutes(params);
     return routes;
   }
   async findRoute(params = {}) {
-    const routes = await this.connector.findOne(params);
-    return routes;
+    const routes = await gtfs.getRoutes(params);
+    return routes[0];
   }
 }
 
 export class Stops {
   constructor() {
-    this.connector = Stop;
+    this.connector = stop;
   }
   async findStops(params = {}) {
     const stops = await this.connector.find(params);
     return stops;
+  }
+}
+
+export class Stop {
+  constructor() {
+    this.connector = stop;
+  }
+  async getStop(params = {}) {
+    const stops = await this.connector.findOne(params);
+    return stops;
+  }
+  async getTimes(params = {}) {
+    const times = await gtfs.getStoptimes(params);
+    return times;
+  }
+  async getTrips(params = {}) {
+    const times = await gtfs.getTrips(params);
+    return times;
   }
 }
 
@@ -38,4 +58,4 @@ export class Shapes {
   }
 }
 
-export default { Routes, Shapes, Stops };
+export default { Routes, Shapes, Stop, Stops };

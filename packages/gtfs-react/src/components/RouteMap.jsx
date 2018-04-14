@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Map, Marker, TileLayer, Polyline } from "react-leaflet";
+import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
 const RouteMap = ({ shapes }) => {
   const positions = shapes.map(shape => [
@@ -18,7 +18,11 @@ const RouteMap = ({ shapes }) => {
         <Marker
           key={shape.shape_pt_sequence}
           position={[shape.shape_pt_lat, shape.shape_pt_lon]}
-        />
+        >
+            <Popup>
+              <div>Hello</div>
+            </Popup>
+        </Marker>
       ))}
       <Polyline positions={positions} />
     </Map>
@@ -28,8 +32,8 @@ const RouteMap = ({ shapes }) => {
 RouteMap.propTypes = {
   shapes: PropTypes.arrayOf(
     PropTypes.shape({
-      shape_pt_lat: PropTypes.string,
-      shape_pt_lon: PropTypes.string
+      shape_pt_lat: PropTypes.number,
+      shape_pt_lon: PropTypes.number
     })
   )
 };

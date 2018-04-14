@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
 
@@ -34,6 +35,14 @@ const RouteContainer = ({ match: { params: { id } } }) => {
       }}
     </Query>
   );
+};
+
+RouteContainer.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  })
 };
 
 export default RouteContainer;

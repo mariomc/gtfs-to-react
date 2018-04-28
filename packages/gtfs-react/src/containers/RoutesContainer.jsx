@@ -10,17 +10,30 @@ const GET_ROUTES = gql`
       route_id
       route_long_name
     }
+    shapes {
+      shape_id
+      shape_pt_sequence
+      shape_pt_lat
+      shape_pt_lon
+    }
   }
 `;
 
-const RoutesContainer = () => (
-  <Query query={GET_ROUTES}>
-    {({ loading, error, data }) => {
-      if (loading) return "Loading...";
-      if (error) return `Error! ${error.message}`;
-      return <Routes routes={data.routes} />;
-    }}
-  </Query>
-);
+class RoutesContainer extends React.Component {
+  state = {};
+  onHover = (id) => {
+    this.setState({hoveredItem: id});
+  }
 
-export default RoutesContainer;
+  render() {
+    return <Query query={GET_ROUTES}> 
+      {({ loading, error, data }) => {
+        if (loading) return "Loading...";
+        if (error) return `Error! ${error.message}`;
+        return <Routes routes={data.routes} shapes={data.shapes} onHover={this.onHover} activeItem={this.state.hoveredItem} />;
+      }}
+    </Query>
+  }
+}
+
+  export default RoutesContainer;

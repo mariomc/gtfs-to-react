@@ -8,7 +8,7 @@ const RouteMap = ({ shapes }) => {
     shape.shape_pt_lon
   ]);
   return (
-    <Map center={positions[0]} zoom={14} style={{ height: 400 }}>
+    <Map center={positions[0] || [38.740872, -9.105669]} zoom={14} style={{ height: 400 }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

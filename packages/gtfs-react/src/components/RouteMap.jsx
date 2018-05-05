@@ -7,8 +7,10 @@ const RouteMap = ({ shapes, style = {} }) => {
     shape.shape_pt_lat,
     shape.shape_pt_lon
   ]);
+
+  const bounds = positions.length ? { bounds: positions } : {};
   return (
-    <Map center={positions[0] || [38.740872, -9.105669]} zoom={14} style={{ height: 400, ...style }}>
+    <Map center={positions[0] || [38.740872, -9.105669]} zoom={14} style={{ height: 400, ...style }} {...bounds}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

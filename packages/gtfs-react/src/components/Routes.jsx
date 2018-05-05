@@ -24,14 +24,13 @@ const Routes = ({ routes, shapes, onHover, activeItem }) => {
 
   return (
     <Fragment>
-      <h3>Routes</h3>
       <Row>
-        <Col span={6}><List dataSource={routes} renderItem={Route} bordered/></Col>
-        <Col span={12}><RouteMap shapes={shapes.filter((element) => element.shape_id === activeItem)} /></Col>
+        <Col span={6}><List style={{ height: '100vh', overflow: 'scroll' }} dataSource={routes} renderItem={Route} bordered/></Col>
+        <Col span={18}><RouteMap style={{ height: '100vh' }} shapes={shapes.filter((element) => element.shape_id === activeItem)} /></Col>
       </Row>
     </Fragment>
   );
-} 
+}
 
 Routes.propTypes = {
   routes: PropTypes.arrayOf(

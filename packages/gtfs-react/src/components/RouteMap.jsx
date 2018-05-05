@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
-const RouteMap = ({ shapes }) => {
+const RouteMap = ({ shapes, style = {} }) => {
   const positions = shapes.map(shape => [
     shape.shape_pt_lat,
     shape.shape_pt_lon
   ]);
   return (
-    <Map center={positions[0] || [38.740872, -9.105669]} zoom={14} style={{ height: 400 }}>
+    <Map center={positions[0] || [38.740872, -9.105669]} zoom={14} style={{ height: 400, ...style }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -30,6 +30,7 @@ const RouteMap = ({ shapes }) => {
 };
 
 RouteMap.propTypes = {
+  style: PropTypes.object,
   shapes: PropTypes.arrayOf(
     PropTypes.shape({
       shape_pt_lat: PropTypes.number,

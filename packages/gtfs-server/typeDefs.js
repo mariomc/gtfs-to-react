@@ -64,7 +64,7 @@ type RootQuery {
   stop(stop_id: String): Stop
   getStopTimes(stop_id: String): [StopTime]
   routes(route_id: String, stop_id: String): [Route]
-  stops: [Stop]
+  stops(stop_id: String, route_id: String): [Stop]
   getStopTrips(route_id: String): [Trip]
   shapes(shape_id: String): [Shape]
 }

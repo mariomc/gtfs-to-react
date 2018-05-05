@@ -1,32 +1,34 @@
+import gtfs from "gtfs";
+import stop from "gtfs/models/gtfs/stop";
+import Shape from "gtfs/models/gtfs/shape";
+
 const resolveFunctions = {
   RootQuery: {
-    route(_, params, ctx) {
-      const routes = new ctx.models.Routes();
-      return routes.findRoute(params);
+    async route(_, params) {
+      const routes = await gtfs.getRoutes(params);
+      return routes[0];
     },
-    routes(_, params, ctx) {
-      const routes = new ctx.models.Routes();
-      return routes.getAllRoutes(params);
+    routes(_, params) {
+      return gtfs.getRoutes(params);
     },
-    stops(_, props, ctx) {
-      const stops = new ctx.models.Stops();
-      return stops.findStops(props);
+    stops(_, props) {
+      const params = { agency_key: 'carris', ...props};
+      return gtfs.getStops(params);
     },
-    stop(_, props, ctx) {
-      const stop = new ctx.models.Stop();
-      return stop.getStop(props);
+    stop(_, params) {
+      return stop.findOne(params);
     },
-    getStopTimes(_, props, ctx) {
-      const stop = new ctx.models.Stop();
-      return stop.getTimes(props);
+    getStopTimes(_, params) {
+      return gtfs.getStoptimes(params);
     },
-    getStopTrips(_, props, ctx) {
-      const stop = new ctx.models.Stop();
-      return stop.getTrips(props);
+    getStopTrips(_, params) {
+      return gtfs.getTrips(params);
+
     },
-    shapes(_, props, ctx) {
-      const shapes = new ctx.models.Shapes();
-      return shapes.findShapes(props);
+    shapes(_, params) {
+      const shapes = Shape.find(params)
+        .sort({ shape_pt_sequence: 1 });
+      return shapes;
     }
   }
 };

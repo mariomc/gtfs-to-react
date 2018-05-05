@@ -16,13 +16,15 @@ const RouteMap = ({ shapes, style = {} }) => {
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
 
-      {shapes.map(shape => (
+      {shapes.map((shape) => (
         <Marker
           key={shape.shape_pt_sequence}
           position={[shape.shape_pt_lat, shape.shape_pt_lon]}
         >
             <Popup>
-              <div>Hello</div>
+              <div>
+                Hello
+              </div>
             </Popup>
         </Marker>
       ))}
@@ -37,6 +39,14 @@ RouteMap.propTypes = {
     PropTypes.shape({
       shape_pt_lat: PropTypes.number,
       shape_pt_lon: PropTypes.number
+    })
+  ),
+  stops: PropTypes.arrayOf(
+    PropTypes.shape({
+      stop_id: PropTypes.string,
+      stop_name: PropTypes.string,
+      stop_lat: PropTypes.number,
+      stop_lon: PropTypes.number,
     })
   )
 };

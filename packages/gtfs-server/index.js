@@ -7,7 +7,6 @@ import cors from "cors";
 
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
-import models from "./connectors";
 
 const app = express();
 
@@ -32,7 +31,7 @@ app.use(
   "/graphql",
   bodyParser.json(),
   cors(),
-  graphqlExpress({ schema: executableSchema, context: { models } })
+  graphqlExpress({ schema: executableSchema })
 );
 app.get("/graphiql", graphiqlExpress({ endpointURL: "/graphql" })); // if you want GraphiQL enabled
 

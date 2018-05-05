@@ -26,7 +26,7 @@ class RoutesContainer extends React.Component {
   }
 
   render() {
-    return <Query query={GET_ROUTES}> 
+    return <Query query={GET_ROUTES}>
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;

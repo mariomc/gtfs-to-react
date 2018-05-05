@@ -12,6 +12,12 @@ const GET_ROUTE = gql`
       route_id
       route_long_name
     }
+    stops(route_id: $id) {
+      stop_id
+      stop_name
+      stop_lat
+      stop_lon
+    }
     shapes(shape_id: $id) {
       shape_pt_sequence
       shape_pt_lat
@@ -28,8 +34,8 @@ const RouteContainer = ({ match: { params: { id } } }) => {
         if (error) return `Error! ${error.message}`;
         return (
           <Fragment>
-            <RouteMap shapes={data.shapes} />
-            <Route route={data.route} />
+            <RouteMap shapes={data.shapes} stops={data.stops} />
+            <Route route={data.route} stops={data.stops} />
           </Fragment>
         );
       }}

@@ -25,7 +25,6 @@ class RoutesContainer extends React.Component {
     this.setState({ hoveredItem: id });
   };
   onSearch = query => {
-    console.log("q", query);
     this.setState({ searchQuery: query });
   };
 

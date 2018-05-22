@@ -18,11 +18,6 @@ const GET_ROUTE = gql`
       stop_lat
       stop_lon
     }
-    shapes(shape_id: $id) {
-      shape_pt_sequence
-      shape_pt_lat
-      shape_pt_lon
-    }
     stopTimes(route_id: $id) {
       trip_id
       arrival_time
@@ -40,7 +35,7 @@ const RouteContainer = ({ match: { params: { id } } }) => {
 
         return (
           <Spin spinning={loading}>
-            <StopsMap shapes={data.shapes} stops={data.stops} />
+            <StopsMap stops={data.stops} />
             <RouteTable
               route={data.route}
               stops={data.stops}

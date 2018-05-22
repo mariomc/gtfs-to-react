@@ -1,16 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
+import { Link } from "react-router-dom";
 
-const StopsMap = ({
-  shapes = [{ shape_pt_lat: 38.740872, shape_pt_lon: -9.105669 }],
-  style = {}
-}) => {
-  const positions = shapes.map(shape => [
-    shape.shape_pt_lat,
-    shape.shape_pt_lon
-  ]);
-
+const StopsMap = ({ style = {}, stops, showLine = true }) => {
+  if (!stops) return null;
+  const positions = stops.map(stop => [stop.stop_lat, stop.stop_lon]);
   const bounds = positions.length ? { bounds: positions } : {};
   return (
     <Map
@@ -24,14 +19,18 @@ const StopsMap = ({
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
 
-      {shapes.map((shape, index) => (
-        <Marker key={index} position={[shape.shape_pt_lat, shape.shape_pt_lon]}>
+      {stops.map((stop, index) => (
+        <Marker key={index} position={[stop.stop_lat, stop.stop_lon]}>
           <Popup>
-            <div>Hello</div>
+            {/* <Link to={`/stops/${stop.stop_id}`}> */}
+            <div>
+              #{index} - {stop.stop_name}
+            </div>
+            {/* </Link> */}
           </Popup>
         </Marker>
       ))}
-      <Polyline positions={positions} />
+      {showLine && <Polyline positions={positions} />}
     </Map>
   );
 };

@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 import { Link } from "react-router-dom";
 import List from "antd/lib/list";
-import {Row, Col} from "antd";
+import Search from "antd/lib/input/Search";
+
+import { Row, Col } from "antd";
 
 import RouteMap from "../components/RouteMap";
 
@@ -12,11 +14,19 @@ const route = {
   route_long_name: PropTypes.string
 };
 
-const Routes = ({ routes, shapes, onHover, activeItem }) => {
-
+const Routes = ({
+  routes,
+  shapes,
+  onHover,
+  activeItem,
+  onSearch,
+  searchQuery
+}) => {
   const Route = ({ route_id, route_long_name }) => (
     <List.Item>
-      <Link to={`/routes/${route_id}`} onMouseOver={() => onHover(route_id)}>{route_long_name}</Link>
+      <Link to={`/routes/${route_id}`} onMouseOver={() => onHover(route_id)}>
+        {route_long_name}
+      </Link>
     </List.Item>
   );
 
@@ -25,12 +35,32 @@ const Routes = ({ routes, shapes, onHover, activeItem }) => {
   return (
     <Fragment>
       <Row>
-        <Col span={6}><List style={{ height: '100vh', overflow: 'scroll' }} dataSource={routes} renderItem={Route} bordered/></Col>
-        <Col span={18}><RouteMap style={{ height: '100vh' }} shapes={shapes.filter((element) => element.shape_id === activeItem)} /></Col>
+        <Col span={6} style={{ height: "100vh", overflow: "scroll" }}>
+          <Search
+            placeholder="Search"
+            onChange={ev => {
+              onSearch(ev.target.value);
+            }}
+          />
+          <List
+            style={{ height: "100%" }}
+            dataSource={routes.filter(
+              route => route.route_long_name.indexOf(searchQuery) > -1
+            )}
+            renderItem={Route}
+            bordered
+          />
+        </Col>
+        <Col span={18}>
+          <RouteMap
+            style={{ height: "100vh" }}
+            shapes={shapes.filter(element => element.shape_id === activeItem)}
+          />
+        </Col>
       </Row>
     </Fragment>
   );
-}
+};
 
 Routes.propTypes = {
   routes: PropTypes.arrayOf(

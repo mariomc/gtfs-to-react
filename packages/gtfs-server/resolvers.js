@@ -12,22 +12,26 @@ const resolveFunctions = {
       return gtfs.getRoutes(params);
     },
     stops(_, props) {
-      const params = { agency_key: 'carris', ...props};
+      const params = { agency_key: "carris", ...props };
       return gtfs.getStops(params);
     },
     stop(_, params) {
       return stop.findOne(params);
     },
-    getStopTimes(_, params) {
-      return gtfs.getStoptimes(params);
+    stopTimes(_, props) {
+      const params = {
+        agency_key: "carris",
+        ...props
+      };
+      return gtfs.getStoptimes(params, undefined, {
+        $sort: { arrival_time: 1, stop_sequence: 1 }
+      });
     },
     getStopTrips(_, params) {
       return gtfs.getTrips(params);
-
     },
     shapes(_, params) {
-      const shapes = Shape.find(params)
-        .sort({ shape_pt_sequence: 1 });
+      const shapes = Shape.find(params).sort({ shape_pt_sequence: 1 });
       return shapes;
     }
   }

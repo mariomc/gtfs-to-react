@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
-const RouteMap = ({
+const StopsMap = ({
   shapes = [{ shape_pt_lat: 38.740872, shape_pt_lon: -9.105669 }],
   style = {}
 }) => {
@@ -15,7 +15,7 @@ const RouteMap = ({
   return (
     <Map
       center={positions[0] || [38.7487, -9.1544]}
-      zoom={17}
+      zoom={14}
       style={{ height: 400, ...style }}
       {...bounds}
     >
@@ -36,7 +36,7 @@ const RouteMap = ({
   );
 };
 
-RouteMap.propTypes = {
+StopsMap.propTypes = {
   style: PropTypes.object,
   shapes: PropTypes.arrayOf(
     PropTypes.shape({
@@ -54,4 +54,4 @@ RouteMap.propTypes = {
   )
 };
 
-export default RouteMap;
+export default StopsMap;

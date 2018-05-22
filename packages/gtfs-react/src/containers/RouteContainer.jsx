@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
-
-import Route from "../components/Route";
-import RouteMap from "../components/RouteMap";
+import Spin from "antd/lib/spin";
+import RouteTable from "../components/RouteTable";
+import StopsMap from "../components/StopsMap";
 
 const GET_ROUTE = gql`
   query Route($id: String!) {
@@ -23,6 +23,12 @@ const GET_ROUTE = gql`
       shape_pt_lat
       shape_pt_lon
     }
+    stopTimes(route_id: $id) {
+      trip_id
+      arrival_time
+      stop_id
+      stop_sequence
+    }
   }
 `;
 
@@ -30,13 +36,17 @@ const RouteContainer = ({ match: { params: { id } } }) => {
   return (
     <Query asyncMode query={GET_ROUTE} variables={{ id }}>
       {({ loading, error, data }) => {
-        if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
+
         return (
-          <Fragment>
-            <RouteMap shapes={data.shapes} stops={data.stops} />
-            <Route route={data.route} stops={data.stops} />
-          </Fragment>
+          <Spin spinning={loading}>
+            <StopsMap shapes={data.shapes} stops={data.stops} />
+            <RouteTable
+              route={data.route}
+              stops={data.stops}
+              timetable={data.stopTimes}
+            />
+          </Spin>
         );
       }}
     </Query>

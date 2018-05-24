@@ -9,13 +9,17 @@ import Search from "antd/lib/input/Search";
 import StopsMap from "./StopsMap";
 
 const Stops = ({ stops, searchQuery, onSearch, activeItem, onHover }) => {
-  const Stop = ({ stop_id, stop_name }) => (
-    <List.Item onMouseOver={() => onHover(stop_id)}>
-      <Link to={`/stops/${stop_id}`}>
-        {stop_id} - {stop_name}
-      </Link>
-    </List.Item>
-  );
+  const Stop = stop => {
+    const { stop_id, stop_name } = stop;
+    return (
+      <List.Item onMouseOver={() => onHover(stop)}>
+        <Link to={`/stops/${stop_id}`}>
+          {stop_id} - {stop_name}
+        </Link>
+      </List.Item>
+    );
+  };
+
   return (
     <Row>
       <Col span={6} style={{ height: "100vh", overflow: "scroll" }}>
@@ -38,7 +42,7 @@ const Stops = ({ stops, searchQuery, onSearch, activeItem, onHover }) => {
         <StopsMap
           showLine={false}
           style={{ height: "100vh" }}
-          stops={stops.filter(element => element.stop_id === activeItem)}
+          stops={activeItem ? [activeItem] : []}
         />
       </Col>
     </Row>

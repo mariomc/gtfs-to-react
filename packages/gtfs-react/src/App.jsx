@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import StopsContainer from "./containers/StopsContainer";
+import StopContainer from "./containers/StopContainer";
 import RoutesContainer from "./containers/RoutesContainer";
 import RouteContainer from "./containers/RouteContainer";
 
@@ -16,6 +17,7 @@ const App = () => (
   <Router>
     <Switch>
       <Route exact path="/stops" component={StopsContainer} />
+      <Route exact path="/stops/:id" component={StopContainer} />
       <Route exact path="/routes" component={RoutesContainer} />
       <Route exact path="/routes/:id" component={RouteContainer} />
       <Redirect from={"/"} to={"/routes"} />

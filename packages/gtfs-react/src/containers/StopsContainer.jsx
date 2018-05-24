@@ -20,8 +20,8 @@ class StopsContainer extends React.Component {
   onSearch = query => {
     this.setState({ searchQuery: query });
   };
-  onHover = stopId => {
-    this.setState({ activeItem: stopId });
+  onHover = stop => {
+    this.setState({ activeItem: stop });
   };
 
   render() {

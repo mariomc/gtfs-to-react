@@ -62,7 +62,7 @@ type Trip {
 type RootQuery {
   route(route_id: String, stop_id: String): Route
   stop(stop_id: String): Stop
-  stopTimes(route_id: String): [StopTime]
+  stopTimes(route_id: String, stop_id: String): [StopTime]
   routes(route_id: String, stop_id: String): [Route]
   stops(stop_id: String, route_id: String): [Stop]
   getStopTrips(route_id: String): [Trip]

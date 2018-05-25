@@ -32,7 +32,7 @@ const Stops = ({ stops, searchQuery, onSearch, activeItem, onHover }) => {
         <List
           style={{ height: "100%" }}
           dataSource={stops.filter(
-            stop => stop.stop_name.indexOf(searchQuery) > -1
+            stop => stop.stop_name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1 || stop.stop_id.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1
           )}
           renderItem={Stop}
           bordered

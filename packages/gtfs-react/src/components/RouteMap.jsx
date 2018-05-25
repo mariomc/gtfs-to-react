@@ -4,6 +4,7 @@ import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
 const RouteMap = ({
   shapes = [{ shape_pt_lat: 38.740872, shape_pt_lon: -9.105669 }],
+  stops,
   style = {}
 }) => {
   const positions = shapes.map(shape => [
@@ -24,10 +25,10 @@ const RouteMap = ({
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
 
-      {shapes.map((shape, index) => (
-        <Marker key={index} position={[shape.shape_pt_lat, shape.shape_pt_lon]}>
+      {stops.map((stop, index) => (
+        <Marker key={index} position={[stop.stop_lat, stop.stop_lon]}>
           <Popup>
-            <div>Hello</div>
+            <div>{stop.stop_name}</div>
           </Popup>
         </Marker>
       ))}

@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 
 import { Link } from "react-router-dom";
 import List from "antd/lib/list";
 import Search from "antd/lib/input/Search";
+import Spin from "antd/lib/spin";
 
 import { Row, Col } from "antd";
 
@@ -17,13 +19,16 @@ const route = {
 const Routes = ({
   routes,
   shapes,
+  stops,
   onHover,
+  loading,
   activeItem,
   onSearch,
   searchQuery
 }) => {
+  if( !routes ) return null;
   const Route = ({ route_id, route_long_name }) => (
-    <List.Item>
+    <List.Item className={cx({'active-route': activeItem && activeItem == route_id})}>
       <Link to={`/routes/${route_id}`} onMouseOver={() => onHover(route_id)}>
         {route_long_name}
       </Link>
@@ -52,10 +57,13 @@ const Routes = ({
           />
         </Col>
         <Col span={18}>
-          <RouteMap
-            style={{ height: "100vh" }}
-            shapes={shapes.filter(element => element.shape_id === activeItem)}
-          />
+          <Spin spinning={loading}>
+            <RouteMap
+              style={{ height: "100vh" }}
+              stops={stops}
+              shapes={shapes.filter(element => element.shape_id === activeItem)}
+            />
+        </Spin>
         </Col>
       </Row>
     </Fragment>

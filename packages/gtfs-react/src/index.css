@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.even {
+.active-route, .even {
   background-color: #fafafa;
 }
 

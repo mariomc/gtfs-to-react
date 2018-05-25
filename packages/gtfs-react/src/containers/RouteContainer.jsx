@@ -18,6 +18,11 @@ const GET_ROUTE = gql`
       stop_lat
       stop_lon
     }
+    shapes(shape_id: $id) {
+      shape_pt_lat
+      shape_pt_lon
+      shape_pt_sequence
+    }
     stopTimes(route_id: $id) {
       trip_id
       arrival_time
@@ -29,13 +34,13 @@ const GET_ROUTE = gql`
 
 const RouteContainer = ({ match: { params: { id } } }) => {
   return (
-    <Query asyncMode query={GET_ROUTE} variables={{ id }}>
+    <Query query={GET_ROUTE} variables={{ id }}>
       {({ loading, error, data }) => {
         if (error) return `Error! ${error.message}`;
 
         return (
           <Spin spinning={loading}>
-            <StopsMap stops={data.stops} />
+            <StopsMap stops={data.stops} shapes={data.shapes} />
             <RouteTable
               route={data.route}
               stops={data.stops}

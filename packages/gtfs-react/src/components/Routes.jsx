@@ -28,7 +28,7 @@ const Routes = ({
 }) => {
   if( !routes ) return null;
   const Route = ({ route_id, route_long_name }) => (
-    <List.Item className={cx({'active-route': activeItem && activeItem == route_id})}>
+    <List.Item className={cx({'active-route': activeItem && activeItem === route_id})}>
       <Link to={`/routes/${route_id}`} onMouseOver={() => onHover(route_id)}>
         {route_long_name}
       </Link>

@@ -18,18 +18,25 @@ const RouteTable = ({ stops, timetable }) => {
     acc[val.stop_sequence] = acc[val.stop_sequence] || [];
     acc[val.stop_sequence].push(val);
     return acc;
-  }, []);
+  }, []).filter(item => !!item);
   const cellRenderer = ({ style, key, rowIndex, columnIndex }) => {
     const isEven = !!(rowIndex % 2);
+    let text = '';
+    try {
+      text = !rowIndex
+        ? stops[columnIndex].stop_name
+        : (processedTimetable[columnIndex][rowIndex - 1] || {}).arrival_time;
+    } catch(ex) {
+      text = '';
+    }
+
     return (
       <div
         key={key}
         style={style}
         className={cx("cell", { even: isEven, odd: !isEven })}
       >
-        {!rowIndex
-          ? stops[columnIndex].stop_name
-          : (processedTimetable[columnIndex][rowIndex - 1] || {}).arrival_time}
+        { text }
       </div>
     );
   };

@@ -39,7 +39,7 @@ const RouteContainer = ({ match: { params: { id } } }) => {
         if (error) return `Error! ${error.message}`;
 
         return (
-          <Spin spinning={loading}>
+          <Spin spinning={loading} style={{minHeight: '100vh'}}>
             <StopsMap stops={data.stops} shapes={data.shapes} />
             <RouteTable
               route={data.route}

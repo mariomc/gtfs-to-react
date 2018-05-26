@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
-const StopsMap = ({ style = {}, stops, shapes, showLine = true }) => {
+const StopsMap = ({ style = {}, stops, shapes = [], showLine = true }) => {
   if (!stops) return null;
   const positions = shapes.map(shape => [shape.shape_pt_lat, shape.shape_pt_lon]);
-
-  const bounds = positions.length ? { bounds: positions } : {};
+  const boundPoints = stops.map( stop => [stop.stop_lat, stop.stop_lon]);
+  const bounds = boundPoints.length ? { bounds: boundPoints } : {};
   return (
     <Map
       center={positions[0] || [38.7487, -9.1544]}

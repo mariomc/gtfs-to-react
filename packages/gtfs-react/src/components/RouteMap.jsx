@@ -3,16 +3,22 @@ import PropTypes from "prop-types";
 import { Map, Marker, TileLayer, Polyline, Popup } from "react-leaflet";
 
 const RouteMap = ({
-  shapes = [{ shape_pt_lat: 38.740872, shape_pt_lon: -9.105669 }],
   stops,
+  shapes = [],
   style = {}
 }) => {
+
+  const boundPoints = stops.map(stop => [
+    stop.stop_lat,
+    stop.stop_lon
+  ]);
+
   const positions = shapes.map(shape => [
     shape.shape_pt_lat,
     shape.shape_pt_lon
   ]);
 
-  const bounds = positions.length ? { bounds: positions } : {};
+  const bounds = boundPoints.length ? { bounds: boundPoints } : {};
   return (
     <Map
       center={positions[0] || [38.7487, -9.1544]}

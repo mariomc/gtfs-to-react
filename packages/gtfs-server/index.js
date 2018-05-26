@@ -9,13 +9,14 @@ import cors from "cors";
 
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
+import config from './config.json';
 
 const app = express();
 
 const PORT = 8080;
 
 Mongoose.Promise = global.Promise;
-Mongoose.connect("mongodb://localhost/gtfs", err => {
+Mongoose.connect(config.mongoUrl, err => {
   // eslint-disable-next-line no-console
   console.log("connected");
   if (err) {
@@ -36,13 +37,6 @@ app.use(
   graphqlExpress({ schema: executableSchema })
 );
 app.get("/graphiql", graphiqlExpress({ endpointURL: "/graphql" })); // if you want GraphiQL enabled
-app.get("/times", async (req, res) => {
-  const stopTimes = await gtfs.getStoptimes({
-    agency_key: "carris",
-    stop_id: "1_3812"
-  });
-  return res.send(stopTimes);
-}); // if you want GraphiQL enabled
 
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console

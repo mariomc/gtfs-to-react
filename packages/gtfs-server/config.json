@@ -1,0 +1,4 @@
+{
+  "agency_key": "carris",
+  "mongoUrl": "mongodb://localhost/gtfs"
+}

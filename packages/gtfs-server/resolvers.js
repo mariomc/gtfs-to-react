@@ -2,6 +2,8 @@ import gtfs from "gtfs";
 import stop from "gtfs/models/gtfs/stop";
 import Shape from "gtfs/models/gtfs/shape";
 
+import config from "./config.json";
+
 const resolveFunctions = {
   RootQuery: {
     async route(_, params) {
@@ -12,7 +14,7 @@ const resolveFunctions = {
       return gtfs.getRoutes(params);
     },
     stops(_, props) {
-      const params = { agency_key: "carris", ...props };
+      const params = { agency_key: config.agency_key, ...props };
       return gtfs.getStops(params);
     },
     stop(_, params) {
@@ -20,7 +22,7 @@ const resolveFunctions = {
     },
     stopTimes(_, props) {
       const params = {
-        agency_key: "carris",
+        agency_key: config.agency_key,
         ...props
       };
       return gtfs.getStoptimes(params, undefined, {

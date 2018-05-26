@@ -26,6 +26,8 @@ const StopTable = ({ stop, timetable }) => {
     );
   };
 
+  return <h1>Accepting Pull Requests :P</h1>
+
   return (
     <AutoSizer>
       {({ width, height }) => (
